@@ -1,0 +1,39 @@
+<form name = 'form'
+	action = 'vytraty_add.php'
+	method = 'POST'>
+<table>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<strong>Витрати/Надходження</strong>
+			</td>
+	</tr>
+	<tr>
+		<td>Назва
+			</td>
+		<td>
+			<input type = 'text' name = 'name' value = '<?= $_POST['name'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Тип
+			</td>
+		<td><? type_list($_POST['type']); ?>
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button' value = 'Додати'
+			onclick = "if (confirm('Ви дійсно хочете зберегти ?'))
+			{ document.forms.form.action = 'vytraty_add.php'; document.form.submit(); opener.location.reload();}">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "if (confirm('Закрити не зберігаючи?')) window.close(); opener.location.reload();">
+			</td>
+	</tr>
+</table>
+</form>

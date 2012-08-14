@@ -1,0 +1,36 @@
+calendar.php - 1
+user_data.php - 2
+registration.php - 3
+
+nakladna_list.php - 11
+nakladna_zvit_full.php - 12
+nakladna_basket.php - 13
+
+akt_list.php - 21
+akt_basket.php - 22
+
+bank_list.php - 31
+bank_zvit.php - 32
+bank_basket.php - 33
+
+kassa_list.php - 41
+kassa_zvit.php - 42
+kassa_basket.php - 43
+
+kontragent_list.php - 51
+kontragent_zvit_buyer.php - 52
+kontragent_zvit_seller.php - 53
+kontragent_basket.php - 54
+
+worker_list.php - 61
+worker_basket.php - 62
+
+result_list.php - 71
+result_saldo.php - 72
+result_book.php - 73
+
+zvit_list.php - 81
+
+nomenklatura_list.php - 91
+units_list.php - 92
+vytraty_list.php - 93

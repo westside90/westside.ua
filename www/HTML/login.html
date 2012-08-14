@@ -1,0 +1,63 @@
+<?
+if ($_SESSION['log'] == false):
+?>
+
+<form action = 'PHP/login.php' method = 'POST'>
+	<table width = '300px'>
+	
+		<? if (isset($_GET['log'])): ?> 
+		
+		<tr>
+			<td colspan = '2' align = 'center'><?= $lang[$_SESSION['lang']]['wrong_login_or_pass'] ?>
+			</td>
+		</tr>
+		
+		<? endif; ?>
+		
+		<tr>
+			<td width = '150px'><?= $lang[$_SESSION['lang']]['login'] ?></td>
+			<td width = '150px'>
+				<input type = 'text' name = 'login'>
+			</td>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['password'] ?></td>
+			<td>
+				<input type = 'password' name = 'pass'>
+			</td>
+		</tr>
+		<tr>
+			<td><a href = 'index.php?act=reg'><?= $lang[$_SESSION['lang']]['register'] ?></td>
+			<td align = 'center'>
+				<input type = 'submit' value = 'Login'>
+			</td>
+		</tr>
+	</table>
+</form>
+
+<? 
+endif;
+if ($_SESSION['log'] == true):
+?>
+
+<div align = 'center'><?= $lang[$_SESSION['lang']]['hello'] ?> <?= $_SESSION['login'] ?>.</div>
+
+<? if ($_SESSION['action'] != '3'): ?>
+
+<div align = 'center'><a href = 'index.php?act=profile'><?= $lang[$_SESSION['lang']]['my_profile'] ?></a></div>
+
+<? endif; ?>
+
+<? if ($_SESSION['action'] == '0'): ?>
+
+<div align = 'center'><a href = 'index.php?act=accounts'><?= $lang[$_SESSION['lang']]['accounts'] ?></a></div>
+
+<? endif; ?>
+
+<form action = 'PHP/login.php' method = 'POST'>
+	<div align = 'center'>
+		<input type = 'hidden' name = 'log' value = 'out'>
+		<input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['exit'] ?>'>
+	</div>
+</form>
+
+<? endif;?>

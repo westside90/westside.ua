@@ -1,0 +1,225 @@
+<script src="html/SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
+<link href="html/SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css">
+
+<form action="php/register/register_jur.php" method="post" name="register_jur">
+
+<div id="TabbedPanels1" class="TabbedPanels">
+  <ul class="TabbedPanelsTabGroup">
+    <li class="TabbedPanelsTab" tabindex="0">Основні дані</li>
+    <li class="TabbedPanelsTab" tabindex="0">Юридична адреса</li>
+    <li class="TabbedPanelsTab" tabindex="0">Державна реєстрація</li>
+    <li class="TabbedPanelsTab" tabindex="0">Рахунки</li>
+  </ul>
+  <div class="TabbedPanelsContentGroup">
+    <div class="TabbedPanelsContent">
+    
+<table width="478" border="0">
+  <tr>
+    <th colspan="2" scope="col">Основні дані</th>
+  </tr>
+  <tr>
+    <td align="left">Скорочена назва</td>
+    <td><input type="text" name="short_name" id="short_name" /></td>
+  </tr>
+  <tr>
+    <td align="left">Повна назва</td>
+    <td><input type="text" name="full_name" id="full_name" /></td>
+  </tr>
+  <tr>
+    <td align="left">Код ЄДРПОУ</td>
+    <td><input type="text" name="edrpou" id="edrpou"></td>
+  </tr>
+  <tr>
+    <td align="left">E-mail</td>
+    <td align="left"><input type="text" name="email" id="email"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><strong>Директор</strong></td>
+    </tr>
+  <tr>
+    <td width="137" align="left">Прізвище</td>
+    <td width="331">
+      <input type="text" name="second_name" id="second_name">
+    </td>
+  </tr>
+  <tr>
+    <td align="left">Ім'я</td>
+    <td><input type="text" name="first_name" id="first_name">
+    </tr>
+  <tr>
+    <td align="left">По-батькові</td>
+    <td><input type="text" name="third_name" id="third_name"></td>
+  </tr>
+  <tr>
+    <td align="left">      Код ДРФО</td>
+    <td><input type="text" name="ident_number" id="ident_number"></td>
+  </tr>
+  <tr>
+    <td align="left">Дата народження</td>
+    <td><input type="text" name="birth_date" id="birth_date"></td>
+  </tr>
+  <tr>
+    <td align="left">Моб. телефон</td>
+    <td><input type="text" name="mob_tel" id="mob_tel"></td>
+  </tr>
+  <tr>
+    <td align="left">Skype</td>
+    <td><input type="text" name="skype" id="skype"></td>
+  </tr>
+  </table>
+
+  </div>
+    <div class="TabbedPanelsContent">
+
+<table width="355" border="0">
+  <tr>
+    <th colspan="2" scope="col">Юридична адреса</th>
+  </tr>
+  <tr>
+    <td width="176">Індекс</td>
+    <td width="169"><input type="text" name="indeks" id="indeks"></td>
+  </tr>
+  <tr>
+    <td>Область</td>
+    <td><input type="text" name="oblast" id="oblast"></td>
+  </tr>
+  <tr>
+    <td>Район</td>
+    <td><input type="text" name="rayon" id="rayon"></td>
+  </tr>
+  <tr>
+    <td>Місто</td>
+    <td><input type="text" name="misto" id="misto"></td>
+  </tr>
+  <tr>
+    <td>Вулиця</td>
+    <td><input type="text" name="street" id="street"></td>
+  </tr>
+  <tr>
+    <td>Будинок</td>
+    <td><input type="text" name="budynok" id="budynok"></td>
+  </tr>
+  <tr>
+    <td>Квартира/офіс</td>
+    <td><input type="text" name="office" id="office"></td>
+  </tr>
+  <tr>
+    <td>Телефон</td>
+    <td><input type="text" name="dom_tel" id="station_tel"></td>
+  </tr>
+  <tr>
+    <td>Факс</td>
+    <td><input type="text" name="mob_tel" id="faks"></td>
+  </tr>
+</table>
+    
+    </div>
+    <div class="TabbedPanelsContent">
+    
+<table width="463" border="0">
+      <tr>
+        <th colspan="2" scope="col">Державна реєстрація</th>
+      </tr>
+      <tr>
+        <td width="107">Дата</td>
+        <td width="349"><input type="text" name="derzh_reestr_date" id="derzh_reestr_date"></td>
+      </tr>
+      <tr>
+        <td>Номер свідоцтва</td>
+        <td><input type="text" name="derzh_reestr_svid" id="derzh_reestr_svid"></td>
+      </tr>
+      <tr>
+        <td>Ким зареєстрований</td>
+        <td><input type="text" name="derzh_reestr_list" id="derzh_organ">
+          <input type="submit" name="derzh_reestr_list" id="derzh_list" value="..."></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><strong>Податкова реєстрація</strong></td>
+      </tr>
+      <tr>
+        <td>Дата</td>
+        <td><input type="text" name="pd_reeestr_date" id="pd_reeestr_date"></td>
+      </tr>
+      <tr>
+        <td>Інспекція</td>
+        <td align="left"><input type="text" name="dpi" id="pdi">
+          <input type="submit" name="button" id="dpi_list" value="..."></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="checkbox" name="platnyk_pdv" id="platnyk_pdv">
+          Платник ПДВ</td>
+      </tr>
+      <tr>
+        <td>Номер платника ПДВ</td>
+        <td><input type="text" name="dp_pdv_number" id="dp_pdv_number"></td>
+      </tr>
+      <tr>
+        <td>Номер свідоцтва</td>
+        <td><input type="text" name="dp_svid_number" id="dp_svid_number"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><strong>Реєстрація в ПФУ</strong></td>
+      </tr>
+      <tr>
+        <td>Код управління ПФУ</td>
+        <td><input type="text" name="pfu_kod_upr" id="pfu_kod_upr">
+        <input type="submit" name="pfu_kod_upr_list" id="pfu_kod_upr_list" value="..."></td>
+      </tr>
+      <tr>
+        <td>Реєстраційний код в ПФУ</td>
+        <td><input type="text" name="pfu_reestr_kod" id="pfu_reestr_kod"></td>
+      </tr>
+      <tr>
+        <td>Категорія платника</td>
+        <td><select name="pfu_kategoria" id="pfu_kategoria">
+          <option>Юридична особа з найманими працівниками</option>
+          <option>Юридична особа, де 50% працюючих - інваліди</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td>Система оподаткування</td>
+        <td><select name="pfu_systema" id="pfu_systema">
+          <option>Платник внеску на загальних підставах</option>
+          <option>Платник єдиного податку</option>
+          <option>Платник спец. патенту</option>
+          <option>Платник фіксованого податку</option>
+          <option>Платник фіксованого сільсткогоподарського податку</option>
+        </select></td>
+      </tr>
+    </table>
+    
+    </div>
+    <div class="TabbedPanelsContent">
+
+<table width="299" border="0">
+  <tr>
+    <th colspan="2" scope="col">Банківські реквізити</th>
+    </tr>
+  <tr>
+    <td width="73">Номер</td>
+    <td width="216"><input type="text" name="bank_id" id="bank_id"></td>
+  </tr>
+  <tr>
+    <td>Банк</td>
+    <td><input type="text" name="bank" id="bank">
+      <input type="submit" name="bank_list" id="bank_list" value="..."></td>
+  </tr>
+  <tr>
+    <td>Валюта</td>
+    <td><select name="rahunki_valuta" id="rahunki_valuta">
+      <option>UAH Українська гривня</option>
+      <option>RUB Російський рубль</option>
+      <option>USD Долар США</option>
+      <option>EUR Євро</option>
+    </select></td>
+  </tr>
+</table>
+        
+    </div>
+  </div>
+</div>
+<input type="submit" value="Зареєструватись">
+</form>
+<script type="text/javascript">
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+</script>

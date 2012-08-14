@@ -1,0 +1,100 @@
+<form name = 'form'
+	action = ''
+	method = 'POST'>
+<table>
+	<tr>
+		<td>&nbsp;
+			</td>
+		<td colspan = '3' align = 'center'>
+			<h3>Внесення залишків по товару</h3>
+			<br>
+			Станом на 00.00.0000
+			</td>
+		<td>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '5'>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td>Товар</td>
+		<td>Кількість</td>
+		<td>Ціна</td>
+		<td>Сума</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<? for ($i = 0; $i < $k; $i++): ?>
+
+	<tr>
+		<td>
+			<? tovary_list($_POST['tovar'][$i], $i, $k) ?>
+			</td>
+		<td>
+			<input type = 'text' name = 'kkst[<?= $i ?>]'
+			value = '<? if (isset($_POST['kkst'][$i])) { echo number_format (0 + intval(str_replace(" ","",$_POST['kkst'][$i])), 0, '', ' '); } echo get_units($_POST['tovar'][$i]); ?>'
+			<?= $form['onblur'] ?>>
+			</td>
+		<td>
+			<input type = 'text' name = 'cost[<?= $i ?>]'
+			value = '<? if (isset($_POST['cost'][$i])) { echo number_format (0 + str_replace(" ","",$_POST['cost'][$i]), 2, '.', ' ')." грн."; } ?>'
+			<?= $form['onblur'] ?>>
+			</td>
+		<td>
+			<input type = 'text' name = 'summa<?= $i ?>'
+			value = '<? if (isset($_POST['kkst'][$i]) OR isset($_POST['cost'][$i])) { echo number_format (0 + str_replace(" ","",$_POST['cost'][$i])*str_replace(" ","",$_POST['kkst'][$i]), 2, '.', ' '); echo " грн."; } else { echo "0"; } ?>'
+			disabled>
+			</td>
+		<td>
+			<input type = 'button'
+					value = 'Видалити'
+					onclick = "document.forms.form.action='?k=<?= ($k - 1) ?>&i=<?= $i ?>&old=<?= $_GET['old'] ?>'; document.form.submit(); window.outerHeight=(window.outerHeight-30);"
+					<? if ($k == 1) { echo " disabled"; } ?>>
+			</td>
+	</tr>
+	
+	<? endfor; ?>
+				
+	<tr>
+		<td align = 'center'>
+			<?= $form['add_tovar'] ?>
+			</td>
+		<td align = 'center'>
+			<?= $form['add_line'] ?>
+			</td>
+		<td align = 'center'>Всього:
+			</td>
+		<td align = 'right'>
+			<input type = 'text'
+			name = 'summa_all'
+			value = '<? echo number_format (summa_all($k), 2, '.', ' ')." грн."; ?>' 
+			disabled>
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '5'>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center'>
+			<?= $form['save'] ?>
+			</td>
+		<td rowspan = '3' align = 'center'>Примітка:
+			</td>
+		<td rowspan = '3' colspan = '3'>
+			<textarea name = 'prymitka' cols = '35' rows = '3'
+			<?= $form['onblur'] ?>><?= $_POST['prymitka'] ?></textarea>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center'>
+			<?= $form['close'] ?>
+			</td>
+	</tr>
+	<tr>
+		<td>&nbsp;
+			</td>
+	</tr>
+</table>
+</form>

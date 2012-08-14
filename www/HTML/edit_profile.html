@@ -1,0 +1,100 @@
+<?
+try {
+$STH = $DBH->query("SELECT `avatar`,`pass`,`first_name`,`second_name`,`email` FROM `users` WHERE `id` = '".$_SESSION['id']."'");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($data[] = $STH->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<form action = 'PHP/add_avatar.php' method = 'POST' enctype = 'multipart/form-data'>
+	<table align = 'center' width = '80%'>
+		<tr>
+			<td colspan = '2' align = 'center'><?= $lang[$_SESSION['lang']]['profile'] ?> <b><?= $_SESSION['login']?></b>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['avatar'] ?></td>
+			<td><img src = '<?= $data[0]['avatar'] ?>' width = '150px' height = '150px'></td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['load_new'] ?></td>
+			<td><input type = 'file' name = 'avatar'></td>
+		</tr>
+		<tr>
+			<td colspan = '2' align = 'center'>
+				<input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['upload'] ?>'>
+			</td>
+		</tr>
+	</table>
+</form>
+
+<?
+if (!isset($_POST['pass0'])) $_POST['pass0'] = null;
+if (!isset($_POST['pass1'])) $_POST['pass1'] = null;
+if (!isset($_POST['pass2'])) $_POST['pass2'] = null;
+
+
+if ($_POST['pass0'] != null OR $_POST['pass1'] != null OR $_POST['pass2'] != null)
+	{
+	if (md5($_POST['pass0']) == $data[0]['pass'])
+		{
+		if ($_POST['pass1'] != null)
+			{
+			if ($_POST['pass1'] == $_POST['pass2'])
+				{ $pass = true; }
+			else $pass = false;
+			}
+		else $pass = true;
+		}
+	else $pass = false;
+	}
+else $pass = true;
+?>
+
+<form name = 'form' action = 'PHP/edit_profile.php' method = 'POST'>
+	<table align = 'center' width = '80%'>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['first_name'] ?></td>
+			<td><input type ='text' name = 'first_name' value = '<?= $data[0]['first_name'] ?>'>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['second_name'] ?></td>
+			<td><input type ='text' name = 'second_name' value = '<?= $data[0]['second_name'] ?>'>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['email'] ?></td>
+			<td><input type ='text' name = 'email' value = '<?= $data[0]['email'] ?>'>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['old_password'] ?></td>
+			<td><input type ='password' name = 'pass0' value = '<?= $_POST['pass0'] ?>' 
+						onblur ="document.forms.form.action = '#'; document.form.submit();">
+				<? if ($_POST['pass0'] != null AND (md5($_POST['pass0'])) != $data[0]['pass']) echo $lang[$_SESSION['lang']]['wrong_pass']; ?>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['new_password'] ?></td>
+			<td><input type ='password' name = 'pass1' value = '<?= $_POST['pass1'] ?>' 
+						onblur ="document.forms.form.action = '#'; document.form.submit();">
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['confirm'] ?></td>
+			<td><input type ='password' name = 'pass2' value = '<?= $_POST['pass2'] ?>' 
+						onblur ="document.forms.form.action = '#'; document.form.submit();">
+				<? if ($_POST['pass1'] != null AND $_POST['pass2'] != null AND $_POST['pass1'] != $_POST['pass2']) echo $lang[$_SESSION['lang']]['pass_dont_match']; ?>
+			</td>
+		</tr>
+		<tr>
+			<td colspan = '2' align = 'center'>
+				<input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['save_changes'] ?>' <? if (!$pass) echo 'disabled'; ?>>
+			</td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,181 @@
+<form name = 'form'
+	action = 'kontragent_add.php'
+	method = 'POST'>
+<table>
+	<tr>
+		<th colspan = '2' scope = 'col'>Основні дані
+			</th>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<? type_list($_POST['type'], $k); ?>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'left'>Скорочена назва
+			</td>
+		<td><input type = 'text' name = 'short_name' value = '<?= $_POST['short_name'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td align = 'left'>Повна назва
+			</td>
+		<td><input type = 'text' name = 'full_name' value = '<? if ($_POST['full_name'] == null) { echo $_POST['short_name']; } else {  echo $_POST['full_name']; } ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td align = 'left'>Код ЄДРПОУ(ДРФО)
+			</td>
+		<td><input type = 'text' name = 'ident_number' value = '<?= $_POST['ident_number'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<strong>Директор
+				</strong>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'left'>Прізвище
+			</td>
+		<td><input type = 'text' name = 'second_name' value = '<?= $_POST['second_name'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td align = 'left'>Ім'я
+			</td>
+		<td><input type = 'text' name = 'first_name' value = '<?= $_POST['first_name'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+	</tr>
+	<tr>
+		<td align = 'left'>По-батькові
+			</td>
+		<td><input type = 'text' name = 'third_name' value = '<?= $_POST['third_name'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td align = 'left'>Моб. телефон
+			</td>
+		<td><input type = 'text' name = 'mob_tel' value = '<?= $_POST['mob_tel'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<th colspan = '2' scope = 'col'>Адреса
+			</th>
+	</tr>
+	<tr>
+		<td>Юридична адреса
+			</td>
+		<td><input type = 'text' name = 'address' value = '<?= $_POST['address'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Фактична адреса
+			</td>
+		<td><input type = 'text' name = 'location' value = '<?= $_POST['location'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Телефон
+			</td>
+		<td><input type = 'text' name = 'tel' value = '<?= $_POST['tel'] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<th colspan = '2' scope = 'col'>Банківські реквізити
+			</th>
+	</tr>
+
+<? for ($i = 0; $i < $k; $i++): ?>
+	
+	<tr>
+		<td>Назва рахунку №<?= $i+1 ?>
+			</td>
+		<td><input type = 'text' name = 'bank_name[<?= $i ?>]' value = '<?= $_POST['bank_name'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Номер рахунку
+			</td>
+		<td><input type = 'text' name = 'bank_id[<?= $i ?>]' value = '<?= $_POST['bank_id'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>МФО
+			</td>
+		<td><input type = 'text' name = 'mfo[<?= $i ?>]' value = '<?= $_POST['mfo'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Банк
+			</td>
+		<td><input type = 'text' name = 'bank[<?= $i ?>]' value = '<?= $_POST['bank'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Валюта
+			</td>
+		<td>
+			<? valuta_list($_POST['valuta'][$i], $i, $k); ?>
+			</td>
+	</tr>
+	<? if ($k > 1):?>
+	
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button' value = 'Видалити рахунок'
+			onclick = "document.forms.form.action='?k=<?= $k - 1 ?>&i=<?= $i ?>'; document.form.submit();">
+			</td>
+	</tr>
+	
+	<? endif; ?>
+	
+<? endfor; ?>
+	
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Додати ще рахунок'
+			onclick = "document.forms.form.action='?k=<?= $k + 1 ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<strong>Примітки
+			</strong>
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<textarea name = 'prymitka' cols = '40' rows = '3'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();"><?= $_POST['prymitka'] ?></textarea>
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button' value = 'Зберегти контрагента'
+			onclick = "if (confirm('Зберегти контрагента?')) { document.forms.form.action = 'kontragent_add.php?k=<?= $k ?>'; document.form.submit(); opener.location.reload(); }">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "if (confirm('Закрити не зберігаючи?')) window.close(); opener.location.reload();">
+			</td>
+	</tr>
+</table>
+</form>

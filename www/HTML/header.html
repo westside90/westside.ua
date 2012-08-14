@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title><?= $lang[$_SESSION['lang']]['title'] ?>
+		</title>
+	</head>
+	<body>
+		<table border = '1' style = 'width: 80%; margin-left: 10%'>
+			<tr>
+				<td>
+				<table width = 100%>
+					<tr>
+						<td  colspan = '3' valign = 'middle' 
+							style = 'margin-left: 50px; font-size: 40px'><?= $lang[$_SESSION['lang']]['title'] ?></td>
+					</tr>
+					<tr>
+						<td width = '60px'>
+							<a href = 'PHP/lang_change.php?lang=ua'><img src = 'IMG/SITE/ukr.jpg' height = '24px' width = '24px'></a>
+							<a href = 'PHP/lang_change.php?lang=en'><img src = 'IMG/SITE/eng.jpg' height = '19px' width = '24px'></a>
+						</td>
+						<td align = 'left'>
+							<a href = 'index.php'><?= $lang[$_SESSION['lang']]['main_page'] ?></a>
+						</td>
+						<td align = 'right'>
+						
+							<? if ($_SESSION['action'] == '0' OR $_SESSION['action'] == '1'): ?> 
+							
+							<a href = 'index.php?act=add'><?= $lang[$_SESSION['lang']]['add_new_article'] ?></a>
+							
+							<? endif; ?>
+							
+						</td>
+					</tr>
+				</table>
+				</td>
+				<td width = '300px'>
+					<?php require_once "login.html"; ?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = '2' height = '700px' valign = 'top'>

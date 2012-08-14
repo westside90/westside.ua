@@ -1,0 +1,33 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `login`,`avatar`,`first_name`,`second_name`,`email` FROM `users` WHERE `id` = '".$_GET['id']."'");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+$data[] = $STH->fetch();
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<table align = 'center' width = '80%'>
+	<tr>
+		<td colspan = '2' align = 'center'><?= $lang[$_SESSION['lang']]['user'] ?>: <b><?= $data[0]['login']?></b>
+		</td>
+	</tr>
+	<tr>
+		<td><?= $lang[$_SESSION['lang']]['avatar'] ?></td>
+		<td><img src = '<?= $data[0]['avatar'] ?>' width = '150px' height = '150px'></td>
+	</tr>
+	<tr>
+		<td><?= $lang[$_SESSION['lang']]['first_name'] ?></td>
+		<td><?= $data[0]['first_name'] ?></td>
+	</tr>
+	<tr>
+		<td><?= $lang[$_SESSION['lang']]['second_name'] ?></td>
+		<td><?= $data[0]['second_name'] ?></td>
+	</tr>
+	<tr>
+		<td><?= $lang[$_SESSION['lang']]['email'] ?></td>
+		<td><?= $data[0]['email'] ?></td>
+	</tr>
+</table>

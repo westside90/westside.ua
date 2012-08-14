@@ -1,0 +1,25 @@
+CREATE TABLE `westside_db`.`nakladn` (
+`pn_number` INT NOT NULL AUTO_INCREMENT ,
+`pn_date` TEXT NOT NULL ,
+`pn_receiver` TEXT NOT NULL ,
+`pn_add` TEXT NOT NULL ,
+`pn_kkst` INT NOT NULL ,
+`pn_cost` REAL NOT NULL ,
+`pn_summa` REAL NOT NULL ,
+PRIMARY KEY ( `pn_number` ) 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`nakladn` (
+`pn_number` ,
+`pn_date` ,
+`pn_receiver` ,
+`pn_add` ,
+`pn_kkst` ,
+`pn_cost` ,
+`pn_summa` 
+)
+VALUES (
+'1', 'date', 'receiver', 'add', '3', '34', '102'
+);

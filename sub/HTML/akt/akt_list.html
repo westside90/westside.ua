@@ -1,0 +1,90 @@
+<!-- Шаблон списку актів -->	
+<table align = 'center' id = 'table' class = 'drop-shadow lifted'>
+
+<!-- Виводимо шапку таблиі -->
+
+	<tr>
+		<td align = 'center'>№
+			</td>
+		<td><? sortheader($language[$lang]['date'], $min_date, $max_date, $per_page, 7, 8, 'akt.php?page=0&'); ?>
+			</td>
+		<td><? sortheader($language[$lang]['number'], $min_date, $max_date, $per_page, 5, 6, 'akt.php?page=0&'); ?>
+			</td>
+		<td><? sortheader($language[$lang]['document'], $min_date, $max_date, $per_page, 3, 4, 'akt.php?page=0&'); ?>
+			</td>
+		<td><? sortheader($language[$lang]['kontragent'], $min_date, $max_date, $per_page, 1, 2, 'akt.php?page=0&'); ?>
+			</td>
+		<td><? sortheader($language[$lang]['summa'], $min_date, $max_date, $per_page, 9, 10, 'akt.php?page=0&'); ?>
+			</td>
+		<td align = 'center'><?= $language[$lang]['prymitka'] ?>
+			</td>
+		<td align = 'center'><?= $language[$lang]['status'] ?>
+			</td>
+		<td align = 'center'>&nbsp;
+			</td>
+	</tr>
+<!-- Виводимо шапку таблиі -->
+
+<!-- Строки журналу -->	
+<? for ($i = 0; $i < $finish; $i++):
+	$j=$i+1+$pages*$per_page; ?>
+<tr>
+	<td align = 'center'><?= $j ?>
+		</td>
+	<td align = 'center'><?= $akt[$i]['date'] ?>
+		</td>
+	<td align = 'center'><?= $akt[$i]['number'] ?>
+		</td>
+	<td align = 'center'><?= $akt[$i]['open_name'] ?>
+		</td>
+	<td align = 'left'><?= $akt[$i]['kontragent'] ?>
+		</td>
+	<td align = 'right'><?= $akt[$i]['summa'] ?>
+		</td>
+	<td align = 'center'><?= $akt[$i]['prymitka'] ?>
+		</td>
+	<td align = 'center'><?= $akt[$i]['provodka'] ?>
+		</td>
+	<td align = 'center'><?= $akt[$i]['del'] ?>
+		</td>
+</tr>
+<? endfor; ?>
+<!-- Строки журналу -->		
+
+<!-- Сторінки -->
+<tr>
+	<td colspan = '9'><div align ='left'><?= $language[$lang]['pages'] ?>
+		<? for ($i = 1; $i <= $num_pages; $i++): ?>
+		<a href = 'akt.php?page=0&pages=<?= $i ?>&per_page=<?= $per_page ?>&min_date=<?= $min_date ?>&max_date=<?= $max_date ?>'><?= $i ?></a>
+		<? endfor;?></div>
+
+<!-- К-ксть документів для відображення
+		<div align = 'right'><?= $language[$lang]['show'] ?>
+		<? for ($i = 10; $i <= 30; $i = $i + 10): ?>
+		<a href = 'akt.php?page=0&per_page=<?= $i ?>&min_date=<?= $min_date ?>&max_date=<?= $max_date ?>'><?= $i ?>..</a>
+		<? endfor;?></div>
+К-ксть документів для відображення -->		
+		</td>
+</tr>
+<!-- Сторінки -->
+
+<!-- Меню -->
+<tr>
+	<td colspan = '9' align = 'center'>
+		<?= $akt['add_prihod'] ?>
+		</td>
+</tr>
+<tr>
+	<td colspan = '9' align = 'center'>
+		<?= $akt['add_rashod'] ?>
+		</td>
+</tr>
+<tr>
+	<td colspan = '9' align = 'center'>
+		<?= $akt['add_rno'] ?>
+		</td>
+</tr>
+<!-- Меню -->
+
+</table>
+<!-- Шаблон списку актів -->

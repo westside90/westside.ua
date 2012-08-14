@@ -1,0 +1,72 @@
+<!-- Шаблон оборотно-сальдової відомості -->	
+<table align = 'center' id = 'table' class = 'drop-shadow lifted'>
+
+<!-- Шапка відомості -->
+<tr>
+	<td rowspan = '2' align = 'center'><?= $language[$lang]['rahunok'] ?>
+		</td>
+	<td colspan = '2' align = 'center'><?= $language[$lang]['zalyshok'].$min_date ?>
+		</td>
+	<td colspan = '2' align = 'center'><?= $language[$lang]['oboroty'] ?>
+		</td>
+	<td colspan = '2' align = 'center'><?= $language[$lang]['zalyshok'].$max_date ?>
+		</td>
+</tr>
+<tr>
+	<td align = 'center'><?= $language[$lang]['debet'] ?>
+		</td>
+	<td align = 'center'><?= $language[$lang]['kredit'] ?>
+		</td>
+	<td align = 'center'><?= $language[$lang]['debet'] ?>
+		</td>
+	<td align = 'center'><?= $language[$lang]['kredit'] ?>
+		</td>
+	<td align = 'center'><?= $language[$lang]['debet'] ?>
+		</td>
+	<td align = 'center'><?= $language[$lang]['kredit'] ?>
+		</td>
+</tr>
+<!-- Шапка відомості -->
+
+<!-- Строки відомості -->
+<? for ($i = 0; $i < count($result['rahunki']); $i++): ?>
+<tr>
+	<td align = 'left'><?= $language[$lang][$result['rahunki'][$i]] ?>
+		</td>
+	<td align = 'right'><?= number_format($result[$result['rahunki'][$i].'_begin_debet'], 2, '.', ' ') ?>
+		</td>
+	<td align = 'right'><?= number_format($result[$result['rahunki'][$i].'_begin_kredit'], 2, '.', ' ') ?>
+		</td>
+	<td align = 'right'><?= number_format($result[$result['rahunki'][$i].'_debet'], 2, '.', ' ') ?>
+		</td>
+	<td align = 'right'><?= number_format($result[$result['rahunki'][$i].'_kredit'], 2, '.', ' ') ?>
+		</td>
+	<td align = 'right'><?= number_format($result[$result['rahunki'][$i].'_end_debet'], 2, '.', ' ') ?>
+		</td>
+	<td align = 'right'><?= number_format($result[$result['rahunki'][$i].'_end_kredit'], 2, '.', ' ') ?>
+		</td>
+</tr>
+<? endfor; ?>
+<!-- Строки відомості -->
+
+<!-- Всього -->
+<tr>
+	<td align = 'left'><b><?= $language[$lang]['vsogo'] ?></b>
+		</td>
+	<td align = 'right'><b><?= number_format($result['begin_debet'], 2, '.', ' ') ?></b>
+		</td>
+	<td align = 'right'><b><?= number_format($result['begin_kredit'], 2, '.', ' ') ?></b>
+		</td>
+	<td align = 'right'><b><?= number_format($result['debet'], 2, '.', ' ') ?></b>
+		</td>
+	<td align = 'right'><b><?= number_format($result['kredit'], 2, '.', ' ') ?></b>
+		</td>
+	<td align = 'right'><b><?= number_format($result['end_debet'], 2, '.', ' ') ?></b>
+		</td>
+	<td align = 'right'><b><?= number_format($result['end_kredit'], 2, '.', ' ') ?></b>
+		</td>
+</tr>
+<!-- Всього -->
+
+</table>
+<!-- Шаблон оборотно-сальдової відомості -->

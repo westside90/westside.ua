@@ -1,0 +1,72 @@
+<?
+try {
+$STH = $DBH->query("SELECT `header_".$_SESSION['lang']."`,`text_".$_SESSION['lang']."`,`author`,`edited` FROM `data` WHERE `id` = ".$_GET['id']."");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($data[] = $STH->fetch());
+
+$STH2 = $DBH->query("SELECT SUM(`mark`)/COUNT(`mark`) AS 'mark',COUNT(`mark`) AS 'count' FROM `vote` WHERE `data` = '".$_GET['id']."'");
+$STH2->setFetchMode(PDO::FETCH_ASSOC);
+$vote[] = $STH2->fetch();
+
+$STH2 = $DBH->query("SELECT `login` FROM `users` WHERE `id` = (SELECT `author` FROM `data` WHERE `id` = ".$_GET['id'].")");
+$STH2->setFetchMode(PDO::FETCH_ASSOC);
+$author[] = $STH2->fetch();
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<table width = '80%' align= 'center'>	
+	<tr>
+		<td colspan = '3' align = 'center' style = 'font-size: 20px'>
+			<?= $data[0]['header_'.$_SESSION['lang']] ?>
+			<br>
+			<?
+			if ($_SESSION['log'])
+				{
+				if ($vote[0]['mark'] == 0)
+					{ echo $lang[$_SESSION['lang']]['nobody']; }
+				else
+					{ echo $lang[$_SESSION['lang']]['average'],number_format($vote[0]['mark'],'2','.',''),$lang[$_SESSION['lang']]['count_begin'].$vote[0]['count'].$lang[$_SESSION['lang']]['count_end']; }
+				}
+			?>
+		</td>
+	</tr>
+	<tr>
+		<td colspan = '3'>
+			<?= $data[0]['text_'.$_SESSION['lang']] ?>
+		</td>
+	</tr>
+	<tr>
+		<td align = 'left'>
+			
+			<? if ($_SESSION['action'] == '0' OR ($_SESSION['action'] == '1' AND 
+					$_SESSION['id'] == $data[0]['author'])): ?>
+			
+			<a href ='index.php?act=edit&id=<?= $_GET['id'] ?>'><?= $lang[$_SESSION['lang']]['edit_article'] ?></a>
+			
+			<? endif; ?>
+			
+		</td>
+		<td align = 'center'><?= $lang[$_SESSION['lang']]['date'] ?> <?= $data[0]['edited'] ?>, 
+							<?= $lang[$_SESSION['lang']]['author'] ?> <?= $author[0]['login'] ?>
+		</td>
+		<td align = 'right'>
+			
+			<? if ($_SESSION['action'] == '0' OR ($_SESSION['action'] == '1' AND 
+					$_SESSION['id'] == $data[0]['author'])): ?>
+			
+			<a href ='PHP/del_article.php?act=del&id=<?= $_GET['id'] ?>' 
+				onclick = "return confirm('<?= $lang[$_SESSION['lang']]['del_article_alert'] ?>')"><?= $lang[$_SESSION['lang']]['delete'] ?></a>
+			
+			<? endif; ?>
+			
+		</td>
+	</tr>
+</table>
+
+<?
+if ($_SESSION['log']) require_once "vote.html";
+require_once "comments.html";
+?>

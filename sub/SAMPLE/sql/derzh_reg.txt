@@ -1,0 +1,28 @@
+CREATE TABLE `westside_db`.`derzh_reg` (
+`derzh_reestr_date` TEXT NOT NULL ,
+`derzh_svid` TEXT NOT NULL ,
+`derzh_organ` TEXT NOT NULL ,
+`dpi_reestr_date` TEXT NOT NULL ,
+`dpi` TEXT NOT NULL ,
+`pfu_kod` TEXT NOT NULL ,
+`pfu_reestr_kod` TEXT NOT NULL ,
+`pfu_kategoria` INT NOT NULL ,
+`pfu_systema` INT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`derzh_reg` (
+`derzh_reestr_date` ,
+`derzh_svid` ,
+`derzh_organ` ,
+`dpi_reestr_date` ,
+`dpi` ,
+`pfu_kod` ,
+`pfu_reestr_kod` ,
+`pfu_kategoria` ,
+`pfu_systema` 
+)
+VALUES (
+'reestr_date', 'svid', 'organ', 'date', 'dpi', 'pfu_kod', 'kod', '1', '1'
+);

@@ -1,0 +1,18 @@
+<!-- Форма з вибором діапазону дат -->
+<form ACTION = '<?= $action ?>' METHOD = 'POST'>
+	<input type = 'hidden' name = 'pages' value = '<?= $pages ?>'>
+	<input type = 'hidden' name = 'per_page' value = '<?= $per_page ?>'>
+	
+	<table align = 'center' id = 'table' class = 'drop-shadow lifted'>
+		<tr>
+		<td align = 'right'><input type = 'date'  name = 'min_date' value = '<?= $min_date ?>'>
+			</td>
+		<td align = 'center'><input type = 'submit' value = '<?= $language[$lang]['show'] ?>'>
+			</td>
+		<td align = 'left'><input type = 'date'  name = 'max_date' value = '<?= $max_date ?>'>
+			</td>
+		</tr>
+	</table>
+	
+</form>
+<!-- Форма з вибором діапазону дат -->

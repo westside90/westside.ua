@@ -1,0 +1,142 @@
+<form name = 'form' 
+	action = 'kl_add.php' 
+	method = 'POST'>
+<table>
+	<tr>
+		<td colspan = '2' align = 'right'>
+			Залишок на початок
+			<br>
+			<input type = 'text' value = '<?= number_format(ost_start($_POST['date']), 2, '.', ' '); echo " грн.";?>' disabled>
+			</td>
+		<td>&nbsp;
+			</td>
+		<td colspan = '1' align = 'left'>
+			Касовий лист за
+			</td>
+		<td colspan = '3' align = 'left'>
+			<input type = 'date' name = 'date'
+			value = '<?= $_POST['date'] ?>'
+			onBlur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'right'>
+			Залишок на кінець
+			<br>
+			<input type = 'text' value = '<?= number_format((ost_start($_POST['date']) + summa_prihod($k) - summa_rashod($k)), 2, '.', ' '); echo " грн."; ?>' disabled>
+			</td>
+		<td colspan = '5'>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '7'>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center'>+ / -</td>
+		<td colspan = '2' align = 'center'>Контрагент/Надходження/Витрати</td>
+		<td>Прихід</td>
+		<td>Розхід</td>
+		<td>Призначення</td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<? for ($i = 0; $i < $k; $i++): ?>
+	
+	<tr>
+		<td><? type_list($_POST['type'][$i], $i, $k); ?>
+			</td>
+		<td><? make_type_list($_POST['make_type'][$i], $_POST['type'][$i], $i, $k); ?>
+			</td>
+		<td><? make_list($_POST['make'][$i], $_POST['make_type'][$i], $_POST['type'][$i], $i, $k); ?>
+			</td>
+		<td>
+			<input type = 'text' name = 'summa[<?= $i ?>]'
+			<? if ($_POST['type'][$i] == 0)
+				{
+				echo " value = '";
+				if (isset($_POST['summa'][$i])) 
+					{ echo number_format (0 + str_replace(" ","",$_POST['summa'][$i]), 2, '.', ' '); } 
+					echo " грн."."'";
+				echo " onBlur = \"document.forms.form.action = '?k=".$k."'; document.form.submit();\">";
+				}
+				if ($_POST['type'][$i] == 1)
+					{ echo " disabled>"; }
+			?>
+			</td>
+		<td>
+			<input type = 'text' name = 'summa[<?= $i ?>]'
+			<? if ($_POST['type'][$i] == 1)
+				{
+				echo " value = '";
+				if (isset($_POST['summa'][$i])) 
+					{ echo number_format (0 + str_replace(" ","",$_POST['summa'][$i]), 2, '.', ' '); } 
+					echo " грн."."'";
+				echo " onBlur = \"document.forms.form.action = '?k=".$k."'; document.form.submit();\">";
+				}
+				if ($_POST['type'][$i] == 0)
+					{ echo " disabled>"; }
+			?>
+			</td>
+		<td>
+			<input type = 'text' name = 'description[<?= $i ?>]'
+			value = '<? if (isset($_POST['description'][$i])) echo $_POST['description'][$i]; ?>'
+			onBlur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+		<td>
+			<input type = 'button' value = 'Видалити'
+			onclick = "document.forms.form.action='?k=<?= $k -1 ?>&i=<?= $i ?>'; document.form.submit();"<? if ($k == 1) { echo " disabled"; } ?>>
+			</td>
+	</tr>
+	
+	<? endfor; ?>
+				
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Додати надходження'
+			onClick = 'WinObj = window.open("", "", "width = 400px, height = 300px, toolbar = 0, status = 0, top = 200px, left = 200px");'>
+			</td>
+		<td colspan = '1' align = 'center'>Всього оборотів
+			</td>
+		<td align = 'right'>
+			<input type = 'text' name = 'summa_all' value = '<? echo number_format (summa_prihod($k), 2, '.', ' '); echo " грн."."'"; ?>' disabled>
+			</td>
+		<td align = 'right'>
+			<input type = 'text' name = 'summa_all' value = '<? echo number_format (summa_rashod($k), 2, '.', ' '); echo " грн."."'"; ?>' disabled>
+			</td>
+		<td colspan = '2' align = 'right'>
+		<input type = 'button' value = 'Додати нову строку'
+		onclick = "document.forms.form.action='?k=<?= $k + 1 ?>'; document.form.submit();">
+		</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Додати контрагента'
+			onClick = 'WinObj = window.open("", "", "width = 400px, height = 300px, toolbar = 0, status = 0, top = 200px, left = 200px");'>
+			</td>
+		<td colspan = '5'>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Додати витрату'
+			onClick = 'WinObj = window.open("", "", "width = 400px, height = 300px, toolbar = 0, status = 0, top = 200px, left = 200px");'>
+			</td>
+		<td colspan = '3'>&nbsp;
+			</td>
+		<td align = 'right'>
+			<input type = 'button'
+			value = 'Зберегти документ'
+			onClick = "if (confirm('Зберегти документ проведеним?')) { document.forms.form.action='kl_add.php?k=<?= $k ?>&status=1'; } else { document.forms.form.action='kl_add.php?k=<?= $k ?>&status=0'; } document.form.submit();">
+			</td>
+		<td>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "if (confirm('Закрити не зберігаючи?')) window.close();">
+			</td>
+	</tr>
+</table>
+</form>

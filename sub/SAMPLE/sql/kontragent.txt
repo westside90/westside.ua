@@ -1,0 +1,38 @@
+CREATE TABLE `westside_db`.`kontragent` (
+`kagent` INT NOT NULL ,
+`short_name` TEXT NOT NULL ,
+`full_name` TEXT NOT NULL ,
+`ident_number` TEXT NOT NULL ,
+`first_name` TEXT NOT NULL ,
+`second_name` TEXT NOT NULL ,
+`third_name` TEXT NOT NULL ,
+`mob_tel` TEXT NOT NULL ,
+`address` TEXT NOT NULL ,
+`tel` TEXT NOT NULL ,
+`bank_id` TEXT NOT NULL ,
+`bank` TEXT NOT NULL ,
+`valuta` INT NOT NULL ,
+`prymitka` TEXT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`kontragent` (
+`kagent` ,
+`short_name` ,
+`full_name` ,
+`ident_number` ,
+`first_name` ,
+`second_name` ,
+`third_name` ,
+`mob_tel` ,
+`address` ,
+`tel` ,
+`bank_id` ,
+`bank` ,
+`valuta` ,
+`prymitka` 
+)
+VALUES (
+'1', 'short', 'full', 'ident', 'first', 'second', 'third', 'mob', 'address', 'tel', 'bank_id', 'bank', '1', 'seyfusfos'
+);

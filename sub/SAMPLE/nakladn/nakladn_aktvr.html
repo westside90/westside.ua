@@ -1,0 +1,45 @@
+<form ACTION = 'php/akt/akt_add.php' METHOD = 'GET'>
+<table>
+	<tr>
+		<th colspan = '2' scope = 'col'>Акт виконаних робіт сторонніх організацій № 
+			<input type = 'text' name = 'number' value = '$number'>
+			</th>
+		</tr>
+	<tr>
+		<td>Дата
+			</td>
+		<td><input type = 'text' name = 'date' value = '$date'>
+			</td>
+	</tr>
+	<tr>
+		<td>Виконавець/Замовник
+			</td>
+		<td>"; kontragent_list(0); 
+			echo "</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td>Найменування</td>
+		<td>Кількість</td>
+		<td>Ціна</td>
+		<td>Сума</td>
+    </tr>
+	<tr>
+		<td>"; posluga_list(0,0);
+			echo "</td>
+		<td><input type = 'text' name = 'kkst' value = '$kkst'>
+			</td>
+		<td><input type = 'text' name = 'cost' value = '$cost'>
+			</td>
+		<td ><input type = 'text' name = 'summa' value = '$summa'>
+			</td>
+    </tr>
+	<tr>
+		<td colspan = '3'>Всього
+			</td>
+		<td>00.00 грн.
+			</td>
+	</tr>
+</table>
+</form>

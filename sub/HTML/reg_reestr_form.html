@@ -1,0 +1,111 @@
+<form name = 'form'
+	action = ''
+	method = 'POST'>
+<table>
+	<tr>
+		<th colspan = '2' align = 'center'>
+			Державна реєстрація
+			</th>
+	</tr>
+	<tr>
+		<td>Дата
+			</td>
+		<td><input type = 'text' name = 'derzh_date' value = '<?= $_POST['derzh_date'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Номер свідоцтва (виписка)
+			</td>
+		<td><input type = 'text' name = 'derzh_number' value = '<?= $_POST['derzh_number'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Назва органу<br>державної реєстрації
+			</td>
+		<td><input type = 'text' name = 'derzh_organ' value = '<?= $_POST['derzh_organ'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<th colspan = '2' align = 'center'>
+			Податкова реєстрація (Форма № 4-ОПП)
+			</th>
+	</tr>
+	<tr>
+		<td>Дата
+			</td>
+		<td><input type = 'text' name = 'dpi_date' value = '<?= $_POST['dpi_date'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Код органу<br>податкової реєстрації
+			</td>
+		<td><input type = 'text' name = 'dpi_kod' value = '<?= $_POST['dpi_kod'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Назва органу<br>податкової реєстрації
+			</td>
+		<td><input type = 'text' name = 'dpi_organ' value = '<?= $_POST['dpi_organ'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>ЄДРПОУ органу<br>податкової реєстрації
+			</td>
+		<td><input type = 'text' name = 'dpi_ident' value = '<?= $_POST['dpi_ident'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<th colspan = '2' align = 'center'>
+			Реєстрація в ПФУ
+			</th>
+	</tr>
+	<tr>
+		<td>Дата
+			</td>
+		<td><input type = 'text' name = 'pfu_date' value = '<?= $_POST['pfu_date'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Реєстраційний<br>номер
+			</td>
+		<td><input type = 'text' name = 'pfu_ident' value = '<?= $_POST['pfu_ident'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Код органу<br>реєстрації
+			</td>
+		<td><input type = 'text' name = 'pfu_kod' value = '<?= $_POST['pfu_kod'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Назва органу<br>реєстрації
+			</td>
+		<td><input type = 'text' name = 'pfu_organ' value = '<?= $_POST['pfu_organ'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Зберегти'
+			onclick = "document.forms.form.action='reg_reestr_add.php'; document.form.submit(); opener.location.reload();">
+			</td>
+	</tr>	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "window.close();">
+			</td>
+	</tr>
+</table>
+</form>

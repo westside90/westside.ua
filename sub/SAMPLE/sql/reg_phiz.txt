@@ -1,0 +1,24 @@
+CREATE TABLE `westside_db`.`reg_phiz` (
+`first_name` TEXT NOT NULL ,
+`second_name` TEXT NOT NULL ,
+`third_name` TEXT NOT NULL ,
+`birth_date` TEXT NOT NULL ,
+`ident_number` TEXT NOT NULL ,
+`email` TEXT NOT NULL ,
+`skype` TEXT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`reg_phiz` (
+`first_name` ,
+`second_name` ,
+`third_name` ,
+`birth_date` ,
+`ident_number` ,
+`email` ,
+`skype` 
+)
+VALUES (
+'first', 'second', 'third', 'birth', 'ident', 'email', 'skype'
+);

@@ -1,0 +1,90 @@
+<!-- Шаблон списку документів каси -->	
+<table align = 'center' id = 'table' class = 'drop-shadow lifted'>
+
+<!-- Виводимо шапку таблиі -->
+	<tr>
+		<td align = 'center'>№
+			</td>
+		<td><? sortheader('Дата', $min_date, $max_date, $per_page, 1, 2, 'kassa.php?page=0&'); ?>
+			</td>
+		<td><? sortheader('Номер', $min_date, $max_date, $per_page, 5, 6, 'kassa.php?page=0&'); ?>
+			</td>
+		<td><? sortheader('Документ', $min_date, $max_date, $per_page, 3, 4, 'kassa.php?page=0&'); ?>
+			</td>
+		<td><? sortheader('Контрагент / Витрата', $min_date, $max_date, $per_page, 9, 10, 'kassa.php?page=0&'); ?>
+			</td>
+		<td><? sortheader('Сума', $min_date, $max_date, $per_page, 7, 8, 'kassa.php?page=0&'); ?>
+			</td>
+		<td align = 'center'>Стан
+			</td>
+		<td align = 'center'>&nbsp;
+			</td>
+	</tr>
+<!-- Виводимо шапку таблиі -->
+
+<!-- Строки журналу -->
+<? for ($i = 0; $i < $finish; $i++):
+	$j=$i+1+$pages*$per_page; ?>
+<tr>
+	<td><?= $j ?>
+		</td>
+	<td align = 'center'><?= $kassa[$i]['date'] ?>
+		</td>
+	<td align = 'center'><?= $kassa[$i]['number'] ?>
+		</td>
+	<td align = 'center'><?= $kassa[$i]['open_name'] ?>
+		</td>
+	<td align = 'left'><?= $kassa[$i]['kontragent'] ?>
+		</td>
+	<td align = 'right'><?= $kassa[$i]['summa'] ?>
+		</td>
+	<td align = 'center'><?= $kassa[$i]['provodka'] ?>
+		</td>
+	<td align = 'center'><?= $kassa[$i]['del'] ?>
+		</td>
+</tr>
+<? endfor; ?>
+<!-- Строки журналу -->
+
+<!-- Сторінки -->
+<tr>
+	<td colspan = '8'><div align ='left'><?= $language[$lang]['pages'] ?>
+		<? for ($i = 1; $i <= $num_pages; $i++): ?>
+		<a href = 'kassa.php?page=0&pages=<?= $i ?>&per_page=<?= $per_page ?>&min_date=<?= $min_date ?>&max_date=<?= $max_date ?>'><?= $i ?></a>
+		<? endfor;?></div>
+
+<!-- К-ксть документів для відображення
+		<div align = 'right'><?= $language[$lang]['period'] ?>
+		<? for ($i = 10; $i <= 30; $i = $i + 10): ?>
+		<a href = 'kassa.php?page=0&per_page=<?= $i ?>&min_date=<?= $min_date ?>&max_date=<?= $max_date ?>'><?= $i ?>..</a>
+		<? endfor;?></div>
+К-ксть документів для відображення -->		
+		</td>
+</tr>
+<!-- Сторінки -->
+
+<!-- Меню -->
+<tr>
+	<td colspan = '8' align = 'center'>
+		<?= $kassa['add_prihod'] ?>
+		</td>
+</tr>
+<tr>
+	<td colspan = '8' align = 'center'>
+		<?= $kassa['add_rashod'] ?>
+		</td>
+</tr>
+<tr>
+	<td colspan = '8' align = 'center'>
+		<?= $kassa['add_kl'] ?>
+		</td>
+</tr>
+<tr>
+	<td colspan = '8' align = 'center'>
+		<?= $kassa['zvit'] ?>
+		</td>
+</tr>
+<!-- Меню -->
+
+</table>
+<!-- Шаблон списку документів каси -->

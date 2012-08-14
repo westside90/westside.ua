@@ -1,0 +1,161 @@
+<!-- Шаблон книги обліку доходів -->
+<table border = '1' id = 'table' class = 'drop-shadow lifted'>
+<!-- Шапка таблиці-->
+	<tr>
+		<td align = 'center' colspan = '9'>
+			<?= $language[$lang]['book_header'] ?>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center' rowspan = '3'>
+			<?= $language[$lang]['book_1_1'] ?>
+			</td>
+		<td align = 'center' colspan = '6'>
+			<?= $language[$lang]['book_1_2'] ?>
+			</td>
+		<td align = 'center' colspan = '2' rowspan = '2'>
+			<?= $language[$lang]['book_1_3'] ?>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center' colspan = '3'>
+			<?= $language[$lang]['book_2_1'] ?>
+			</td>
+		<td align = 'center' rowspan = '2'>
+			<?= $language[$lang]['book_2_2'] ?>
+			</td>
+		<td align = 'center' rowspan = '2'>
+			<?= $language[$lang]['book_2_3'] ?>
+			</td>
+		<td align = 'center' rowspan = '2'>
+			<?= $language[$lang]['book_2_4'] ?>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center'>
+			<?= $language[$lang]['book_3_1'] ?>
+			</td>
+		<td align = 'center'>
+			<?= $language[$lang]['book_3_2'] ?>
+			</td>
+		<td align = 'center'>
+			<?= $language[$lang]['book_3_3'] ?>
+			</td>
+		<td align = 'center'>
+			<?= $language[$lang]['book_3_4'] ?>
+			</td>
+		<td align = 'center'>
+			<?= $language[$lang]['book_3_5'] ?>
+			</td>
+	</tr>
+	<tr>
+		<td align = 'center'>1
+			</td>
+		<td align = 'center'>2
+			</td>
+		<td align = 'center'>3
+			</td>
+		<td align = 'center'>4
+			</td>
+		<td align = 'center'>5
+			</td>
+		<td align = 'center'>6
+			</td>
+		<td align = 'center'>7
+			</td>
+		<td align = 'center'>8
+			</td>
+		<td align = 'center'>9
+			</td>
+	</tr>
+<!-- Шапка таблиці-->
+
+
+<!-- Строки таблиці-->
+<?php 
+for ($i = $start; $i < $end; $i++):
+	if ($book[$i]['n'] == 3):
+		for ($j = 0; $j < $book[$i]['n']; $j++):
+			for ($k = 0; $k < count($book[$i]['period'][$j]['book']); $k++):?>
+				
+				<tr>
+					<td align = 'left'><i><?= my_date_format($book[$i]['period'][$j]['book'][$k]['date']) ?></i>
+						</td>
+					<td align = 'right'><i><?= number_format($book[$i]['period'][$j]['book'][$k]['summa'], '2', '.',' ') ?></i>
+						</td>
+					<td align = 'right'>&nbsp;
+						</td>
+					<td align = 'right'><i><?= number_format($book[$i]['period'][$j]['book'][$k]['summa'], '2', '.',' ') ?></i>
+						</td>
+					<td align = 'right'>&nbsp;
+						</td>
+					<td align = 'right'>&nbsp;
+						</td>
+					<td align = 'right'><i><?= number_format($book[$i]['period'][$j]['book'][$k]['summa'], '2', '.',' ') ?></i>
+						</td>
+					<td align = 'right'>&nbsp;
+						</td>
+					<td align = 'right'>&nbsp;
+						</td>
+				</tr>
+			
+			<?php endfor; ?>
+			
+			<tr>
+				<td align = 'left' width = '110px'><?= $book[$i]['period'][$j]['name'] ?>
+					</td>
+				<td align = 'right' width = '90px'><?= number_format($book[$i]['period'][$j]['summa'], '2', '.',' ') ?>
+					</td>
+				<td align = 'right'>&nbsp;
+					</td>
+				<td align = 'right' width = '90px'><?= number_format($book[$i]['period'][$j]['summa'], '2', '.',' ') ?>
+					</td>
+				<td align = 'right'>&nbsp;
+					</td>
+				<td align = 'right'>&nbsp;
+					</td>
+				<td align = 'right' width = '90px'><?= number_format($book[$i]['period'][$j]['summa'], '2', '.',' ') ?>
+					</td>
+				<td align = 'right'>&nbsp;
+					</td>
+				<td align = 'right'>&nbsp;
+					</td>
+			</tr>
+			<tr>
+				<td colspan = '9'>&nbsp;
+					</td>
+			</tr>
+			
+<?php	endfor;
+	endif; ?>
+	
+	<tr>
+		<td align = 'left'><b><?= $book[$i]['name'] ?></b>
+			</td>
+		<td align = 'right'><b><?= number_format($book[$i]['summa'], '2', '.',' ') ?></b>
+			</td>
+		<td align = 'right'>&nbsp;
+			</td>
+		<td align = 'right'><b><?= number_format($book[$i]['summa'], '2', '.',' ') ?></b>
+			</td>
+		<td align = 'right'>&nbsp;
+			</td>
+		<td align = 'right'>&nbsp;
+			</td>
+		<td align = 'right'><b><?= number_format($book[$i]['summa'], '2', '.',' ') ?></b>
+			</td>
+		<td align = 'right'>&nbsp;
+			</td>
+		<td align = 'right'>&nbsp;
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '9'>&nbsp;
+			</td>
+	</tr>
+	
+<?php endfor; ?>
+<!-- Строки таблиці-->
+
+</table>
+<!-- Шаблон книги обліку доходів -->

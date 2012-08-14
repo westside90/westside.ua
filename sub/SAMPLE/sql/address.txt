@@ -1,0 +1,28 @@
+CREATE TABLE `westside_db`.`address` (
+`indeks` TEXT NOT NULL ,
+`oblast` TEXT NOT NULL ,
+`rayon` TEXT NOT NULL ,
+`misto` TEXT NOT NULL ,
+`street` TEXT NOT NULL ,
+`budynok` TEXT NOT NULL ,
+`office` TEXT NOT NULL ,
+`tel` TEXT NOT NULL ,
+`mob_faks` TEXT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`address` (
+`indeks` ,
+`oblast` ,
+`rayon` ,
+`misto` ,
+`street` ,
+`budynok` ,
+`office` ,
+`tel` ,
+`mob_faks` 
+)
+VALUES (
+'43000', 'obl', 'rayon', 'misto', 'street', 'bud', 'office', 'tel', 'mob'
+);

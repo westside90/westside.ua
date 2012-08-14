@@ -1,0 +1,63 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `header_en`,`header_ua`,`text_en`,`text_ua` FROM `data` WHERE `id` = '".$_GET['id']."'");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($data[] = $STH->fetch());
+
+$STH2 = $DBH->query("SELECT SUM(`mark`)/COUNT(`mark`) AS 'mark', COUNT(`mark`) AS 'count' FROM `vote` WHERE `data` = '".$_GET['id']."'");
+$STH2->setFetchMode(PDO::FETCH_ASSOC);
+while ($mark[] = $STH2->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<form action = 'PHP/edit_article.php' method = 'POST'>
+	<input type = 'hidden' name = 'id' value = '<?= $_GET['id'] ?>'>
+	<table width = '80%' align= 'center'>
+		<tr>
+			<td colspan = '2' align = 'center'><?= $lang[$_SESSION['lang']]['edit_article'] ?></td>
+		</tr>
+		<tr>
+			<td><?= $lang['en']['header'] ?></td>
+			<td><input type = 'text' name = 'title_en' value = '<?= $data[0]['header_en'] ?>'></td>
+		</tr>
+		<tr>
+			<td><?= $lang['ua']['header'] ?></td>
+			<td><input type = 'text' name = 'title_ua' value = '<?= $data[0]['header_ua'] ?>'></td>
+		</tr>
+		<tr>
+			<td><?= $lang['en']['main_text'] ?></td>
+			<td><textarea name = 'text_en' cols = '45' rows = '10'><?= $data[0]['text_en'] ?></textarea></td>
+		</tr>
+		<tr>
+			<td><?= $lang['ua']['main_text'] ?></td>
+			<td><textarea name = 'text_ua' cols = '45' rows = '10'><?= $data[0]['text_ua'] ?></textarea></td>
+		</tr>
+		
+		<? if ($_SESSION['action'] == 0): ?>
+			<tr>
+				<td><?= $lang[$_SESSION['lang']]['rating'] ?></td>
+				
+				<? if ($mark[0]['count'] == 0):?>
+					<td><?= $lang[$_SESSION['lang']]['nobody'] ?></td>
+				<? endif; ?>
+				
+				<? if ($mark[0]['count'] > 0):?>
+					<td>
+						<?= $lang[$_SESSION['lang']]['average'].number_format($mark[0]['mark'],'2','.','').$lang[$_SESSION['lang']]['count_begin'].$mark[0]['count'].$lang[$_SESSION['lang']]['count_end'] ?>
+						<a href = 'PHP/reset_mark.php?id=<?= $_GET['id'] ?>' 
+							onclick = "return confirm('<?= $lang[$_SESSION['lang']]['confirm_reset'] ?>')" ><?= $lang[$_SESSION['lang']]['reset'] ?></a>
+					</td>
+				<? endif; ?>
+				
+			</tr>
+		<? endif; ?>
+		
+		<tr>
+			<td colspan = '2' align = 'center'>
+				<input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['save_changes'] ?>'></td>
+		</tr>
+	</table>
+</form>

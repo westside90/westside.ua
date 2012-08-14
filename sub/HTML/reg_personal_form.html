@@ -1,0 +1,96 @@
+<form name = 'form'
+	action = ''
+	method = 'POST'>
+<table>
+	<tr>
+		<td>Прізвище
+			</td>
+		<td><input type = 'text' name = 'second_name' value = '<?= $_POST['second_name'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+		<tr>
+		<td>Ім'я
+			</td>
+		<td><input type = 'text' name = 'first_name' value = '<?= $_POST['first_name'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>По-батькові
+			</td>
+		<td><input type = 'text' name = 'third_name' value = '<?= $_POST['third_name'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Дата народження
+			</td>
+		<td><input type = 'date' name = 'birth_date' value = '<?= $_POST['birth_date'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Ідентифікаційний номер
+			</td>
+		<td><input type = 'text' name = 'ident_number' value = '<?= $_POST['ident_number'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Поштовий індекс
+			</td>
+		<td><input type = 'text' name = 'indeks' 
+			onblur = "document.forms.form.action = '#'; document.form.submit();" value = '<?= $_POST['indeks'] ?>'>
+			</td>
+	</tr>
+	<tr>
+		<td>Область
+			</td>
+		<td><input type = 'text' name = 'oblast' 
+			onblur = "document.forms.form.action = '#'; document.form.submit();"><?= $_POST['oblast'] ?>'>
+			</td>
+	</tr>
+	<tr>
+		<td>Місто
+			</td>
+		<td><input type = 'text' name = 'misto' 
+			onblur = "document.forms.form.action = '#'; document.form.submit();"><?= $_POST['misto'] ?>'>
+			</td>
+	</tr>
+	<tr>
+		<td>Адреса
+			</td>
+		<td><textarea name = 'address' cols = '15' rows = '3'
+			onblur = "document.forms.form.action = '#'; document.form.submit();"><?= $_POST['address'] ?></textarea>
+			</td>
+	</tr>
+	<tr>
+		<td>Телефон
+			</td>
+		<td><input type = 'text' name = 'tel' value = '<?= $_POST['tel'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Дата початку роботи
+			</td>
+		<td><input type = 'date' name = 'start_date' value = '<?= $_POST['start_date'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Зберегти'
+			onclick = "document.forms.form.action='reg_personal_add.php'; document.form.submit(); opener.location.reload();">
+			</td>
+	</tr>	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "window.close();">
+			</td>
+	</tr>
+</table>
+</form>

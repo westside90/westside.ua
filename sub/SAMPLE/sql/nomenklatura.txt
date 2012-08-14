@@ -1,0 +1,18 @@
+CREATE TABLE `westside_db`.`nomenklatura` (
+`name` TEXT NOT NULL ,
+`full_name` TEXT NOT NULL ,
+`nonem_type` INT NOT NULL ,
+`units` INT NOT NULL 
+) ENGINE = InnoDB;
+
+ 
+
+INSERT INTO `westside_db`.`nomenklatura` (
+`name` ,
+`full_name` ,
+`nonem_type` ,
+`units` 
+)
+VALUES (
+'name', 'full', '1', '1'
+);

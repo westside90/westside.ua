@@ -1,0 +1,16 @@
+CREATE TABLE `westside_db`.`rahunki` (
+`bank_id` TEXT NOT NULL ,
+`bank` TEXT NOT NULL ,
+`valuta` INT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`rahunki` (
+`bank_id` ,
+`bank` ,
+`valuta` 
+)
+VALUES (
+'123456789', 'privat', '1'
+);

@@ -1,0 +1,32 @@
+CREATE TABLE `westside_db`.`reg_jur` (
+`short_name` TEXT NOT NULL ,
+`full_name` TEXT NOT NULL ,
+`edrpou` TEXT NOT NULL ,
+`email` TEXT NOT NULL ,
+`first_name` TEXT NOT NULL ,
+`second_name` TEXT NOT NULL ,
+`third_name` TEXT NOT NULL ,
+`ident_number` TEXT NOT NULL ,
+`birth_date` TEXT NOT NULL ,
+`mob_tel` TEXT NOT NULL ,
+`skype` TEXT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`reg_jur` (
+`short_name` ,
+`full_name` ,
+`edrpou` ,
+`email` ,
+`first_name` ,
+`second_name` ,
+`third_name` ,
+`ident_number` ,
+`birth_date` ,
+`mob_tel` ,
+`skype` 
+)
+VALUES (
+'short', 'full', 'edrpou', 'email', 'first', 'sec', 'third', 'ident', 'birth', 'mob', 'skype'
+);

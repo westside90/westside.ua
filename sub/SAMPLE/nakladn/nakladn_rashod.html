@@ -1,0 +1,70 @@
+<form action="" method="get" name="nakladn_rashod">
+<table width="482" border="0">
+  <tr>
+    <th colspan="4" scope="col">Видаткова накладна № 
+      <input type="text" name="rn_number" id="rn_number" width="50"></th>
+    </tr>
+  <tr>
+    <td width="144">Дата</td>
+    <td colspan="3"><input type="text" name="rn_date" id="rn_date"></td>
+  </tr>
+  <tr>
+    <td>Отримувач</td>
+    <td colspan="3"><select name="rn_receiver" id="rn_receiver" width="200">
+    </select></td>
+  </tr>
+  <tr>
+    <td colspan="4" align="left">За дорученням</td>
+    </tr>
+  <tr>
+    <td>Серія, №</td>
+    <td width="149"><input type="text" name="rn_zador" id="rn_zador"></td>
+    <td width="30">від      </td>
+    <td width="141"><input type="text" name="rn_zador_date" id="rn_zador_date"></td>
+  </tr>
+  <tr>
+    <td>Через</td>
+    <td colspan="3"><input type="text" name="rn_zador_cherez" id="rn_zador_cherez" width="330"></td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+<table width="480" border="1" cellpadding="0" cellspacing="1">
+  <tr>
+    <td width="124" align="center">Найменування</td>
+    <td width="60" rowspan="2" align="center">Кількість</td>
+    <td width="63" rowspan="2" align="center">Ціна</td>
+    <td width="66" rowspan="2" align="center">Сума</td>
+    <td width="62" rowspan="2" align="center">Залишок</td>
+    <td width="18" rowspan="2" align="center"> X</td>
+  </tr>
+  <tr>
+    <td align="center">Партія</td>
+  </tr>
+  <tr>
+    <td align="right"><select name="rn_nomenkl" id="rn_nomenkl">
+      <option>картошка</option>
+      <option>помідори</option>
+      <option>банани</option>
+    </select></td>
+    <td rowspan="2" align="center" valign="middle"><input type="text" name="rn_kkst" id="rn_kkst" width="50"></td>
+    <td rowspan="2" align="center" valign="middle"><input type="text" name="rn_cost" id="rn_cost" width="50"></td>
+    <td rowspan="2" align="center" valign="middle"><input type="text" name="rn_summa" id="rn_summa" width="50"></td>
+    <td rowspan="2" align="center" valign="middle"><input type="text" name="rn_zalyshok" id="rn_zalyshok" width="50"></td>
+    <td rowspan="2" align="center" valign="middle">&nbsp;</td>
+  </tr>
+  <tr align="right">
+    <td><select name="rn_partia" id="rn_partia">
+      <option>ПН - 0001</option>
+    </select></td>
+  </tr>
+</table>
+<a href="">Додати нову строку</a>
+<br>
+<table width="480" border="1" cellpadding="0" cellspacing="1">
+  <tr>
+    <th width="237" align="left" scope="col">Всього</th>
+    <th width="234" align="right" scope="col">00.00 грн.</th>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</form>

@@ -1,0 +1,81 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `id`,`created`,`thread`,`comment`,`user` FROM `comments` 
+						WHERE (`lang` = '".$_SESSION['lang']."' AND `data` = '".$_GET['id']."') 
+						ORDER BY `created`");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($comments[] = $STH->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<table width = '60%' align= 'center'>
+	<tr>
+		<td  colspan = '2' align = 'left'><?= $lang[$_SESSION['lang']]['comments'] ?></td>
+	</tr>
+	
+	<? if (isset($_SESSION['log']) AND $_SESSION['log']): ?>
+	
+	<form action = 'PHP/add_comment.php' method = 'POST'>
+		<input type = 'hidden' name = 'id' value = '<?= $_GET['id'] ?>'>
+		<tr>
+			<td width = '150px'><?= $lang[$_SESSION['lang']]['thread'] ?></td>
+			<td><input type = 'text' name = 'thread' maxlength = '15'>&nbsp;<?= $lang[$_SESSION['lang']]['15_chars'] ?></td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['comment'] ?></td>
+			<td><textarea name = 'comment' cols = '60' rows = '3'></textarea>
+		</tr>
+			<td colspan = '2' align = 'right'><input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['add_comment'] ?>'></td>
+		<tr>
+		</tr>
+	</form>
+	
+	<? endif; ?>
+	
+	<? 
+	for ($i = 0; $i < (count($comments)-1); $i++): 
+		$comments[$i]['date'] = mb_substr($comments[$i]['created'], 0, 10);
+		$comments[$i]['time'] = mb_substr($comments[$i]['created'], 11, 8);
+
+		try {
+		$STH2 = $DBH->query("SELECT `login` FROM `users` WHERE `id` = '".$comments[$i]['user']."'");
+		$STH2->setFetchMode(PDO::FETCH_ASSOC);
+		while ($user[] = $STH2->fetch());
+		}
+		catch(PDOException $error) {  
+			echo $error->getMessage();
+		}
+		
+		$comments[$i]['name'] = $user[0]['login'];
+		unset($user);
+	?>
+	
+	<tr>
+		<td align = 'center'><b><?= $lang[$_SESSION['lang']]['author'] ?><br>
+			<a href = 'index.php?act=view_profile&id=<?= $comments[$i]['user'] ?>'><?= $comments[$i]['name'] ?></a></b>
+		</td>
+		<td align = 'left'><b><?= $comments[$i]['thread'] ?></b></td>
+	</tr>
+	<tr>
+		<td align = 'center'><?= $comments[$i]['date'] ?><br><?= $comments[$i]['time'] ?></td>
+		<td align = 'left'><?= $comments[$i]['comment'] ?></td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'right'>&nbsp;
+		
+			<? if ($_SESSION['action'] == '0'):?>
+			
+				<a href = 'PHP/del_comment.php?id=<?= $comments[$i]['id'] ?>' 
+					onclick = "return confirm('<?= $lang[$_SESSION['lang']]['del_comment_alert'] ?>')"><?= $lang[$_SESSION['lang']]['delete_comment'] ?></a>
+					
+			<? endif; ?>
+			
+		</td>
+	</tr>
+	
+	<? endfor; ?>
+	
+</table>

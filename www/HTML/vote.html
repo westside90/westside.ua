@@ -1,0 +1,47 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `id`,`mark` FROM `vote` WHERE `data` = '".$_GET['id']."' AND `user` = '".$_SESSION['id']."'");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($mark[] = $STH->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<? if (count($mark) == 1): ?>
+
+	<form action = 'PHP/add_vote.php' method = 'POST'>
+		<input type = 'hidden' name = 'id' value = '<?= $_GET['id'] ?>'>
+		<table  width = '80%' align= 'center'>
+			<tr>
+				<td align = 'right'>
+					Оцінити матеріал:
+					<select name = 'mark'>
+					
+						<? for ($i = 10; $i > 0; $i--): ?>
+							<option value = '<?= $i ?>'><?= $i ?></option>
+						<? endfor; ?>
+					
+					</select>
+					<input type = 'submit' value = 'Vote' onclick = "alert('Дякуємо за вашу оцінку');">
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+<?
+endif;
+if (count($mark) > 1):
+?>
+	<table width = '80%' align= 'center'>
+		<tr>
+			<td align = 'right'>
+				Ваш оцінка: <?= $mark[0]['mark'] ?>
+				<br>
+				<a href = 'PHP/del_vote.php?id=<?= $mark[0]['id'] ?>' 
+					onclick = "return confirm('<?= $lang[$_SESSION['lang']]['del_mark_alert'] ?>')">Видалити оцінку</a>
+			</td>
+		</tr>
+	</table>
+<? endif; ?>

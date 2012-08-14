@@ -1,0 +1,63 @@
+<!-- Шаблон списку документів каси -->	
+<table align = 'center' id = 'table' class = 'drop-shadow lifted'>
+
+<!-- Виводимо шапку таблиі -->
+	<tr>
+		<td align = 'center'>№
+			</td>
+		<td align = 'center'><?= $language[$lang]['period'] ?>
+			</td>
+		<td align = 'center'><?= $language[$lang]['document'] ?>
+			</td>
+		<td align = 'center'><?= $language[$lang]['status'] ?>
+			</td>
+		<td align = 'center'><?= $language[$lang]['del'] ?>
+			</td>
+	</tr>
+<!-- Виводимо шапку таблиі -->
+
+<!-- Строки журналу -->
+<? for ($i = 0; $i < $finish; $i++):
+	$j=$i+1+$pages*$per_page; ?>
+<tr>
+	<td><?= $j ?>
+		</td>
+	<td align = 'center'><?= $result[$i]['begin_date'] ?> - <?= $result[$i]['end_date'] ?>
+		</td>
+	<td align = 'center'><?= $result[$i]['open_name'] ?>
+		</td>
+	<td align = 'center'><?= $result[$i]['provodka'] ?>
+		</td>
+	<td align = 'center'><?= $result[$i]['del'] ?>
+		</td>
+</tr>
+<? endfor; ?>
+<!-- Строки журналу -->
+
+<!-- Сторінки -->
+<tr>
+	<td colspan = '5'><div align ='left'><?= $language[$lang]['pages'] ?>
+		<? for ($i = 1; $i <= $num_pages; $i++): ?>
+		<a href = 'bank.php?page=0&pages=<?= $i ?>&per_page=<?= $per_page ?>'><?= $i ?></a>
+		<? endfor;?></div>
+
+<!-- К-ксть документів для відображення
+		<div align = 'right'><?= $language[$lang]['show'] ?>
+		<? for ($i = 10; $i <= 30; $i = $i + 10): ?>
+		<a href = 'bank.php?page=0&per_page=<?= $i ?>'><?= $i ?>..</a>
+		<? endfor;?></div>
+К-ксть документів для відображення -->		
+		</td>
+</tr>
+<!-- Сторінки -->
+
+<!-- Меню -->
+<tr>
+	<td colspan = '5' align = 'center'>
+		<?= $result['add_result'] ?>
+		</td>
+</tr>
+<!-- Меню -->
+
+</table>
+<!-- Шаблон списку документів каси -->

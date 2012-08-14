@@ -1,0 +1,81 @@
+<form name = 'form'
+	action = ''
+	method = 'POST'>
+<table>	
+	<tr>
+		<th colspan = '2' scope = 'col'>Банківські реквізити
+			</th>
+	</tr>
+
+<? for ($i = 0; $i < $k; $i++): ?>
+	
+	<tr>
+		<td>Назва рахунку
+			</td>
+		<td><input type = 'text' name = 'bank_name[<?= $i ?>]' value = '<?= $_POST['bank_name'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Номер рахунку
+			</td>
+		<td><input type = 'text' name = 'bank_id[<?= $i ?>]' value = '<?= $_POST['bank_id'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>МФО
+			</td>
+		<td><input type = 'text' name = 'mfo[<?= $i ?>]' value = '<?= $_POST['mfo'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Банк
+			</td>
+		<td><input type = 'text' name = 'bank[<?= $i ?>]' value = '<?= $_POST['bank'][$i] ?>'
+			onblur = "document.forms.form.action = '?k=<?= $k ?>'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Валюта
+			</td>
+		<td>
+			<? valuta_list($_POST['valuta'][$i], $i, $k); ?>
+			</td>
+	</tr>
+	<? if ($k > 1):?>
+	
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button' value = 'Видалити рахунок'
+			onclick = "document.forms.form.action='?k=<?= $k - 1 ?>&i=<?= $i ?>'; document.form.submit(); window.outerHeight=(window.outerHeight-100);">
+			</td>
+	</tr>
+	
+	<? endif; ?>
+	
+<? endfor; ?>
+	
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Додати ще рахунок'
+			onclick = "document.forms.form.action='?k=<?= $k + 1 ?>'; document.form.submit(); window.outerHeight=(window.outerHeight+100);">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Зберегти'
+			onclick = "document.forms.form.action='reg_bank_add.php'; document.form.submit(); opener.location.reload();">
+			</td>
+	</tr>	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "window.close();">
+			</td>
+	</tr>
+<table>
+</form>

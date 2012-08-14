@@ -1,0 +1,50 @@
+<!-- Форма з вибором кварталу -->
+<form ACTION = '<?= $action ?>' METHOD = 'POST'>
+	
+	<table align = 'center' id = 'table' class = 'drop-shadow lifted'>
+		<tr>
+		<td align = 'right'><?= $language[$lang]['from'] ?> 
+			<select name = 'start_kvartal'>
+				<option value = '1'>I <?= $language[$lang]['kvartal_v'] ?>
+					</option>
+				<option value = '2'>II <?= $language[$lang]['kvartal_v'] ?>
+					</option>
+				<option value = '3'>III <?= $language[$lang]['kvartal_v'] ?>
+					</option>
+				<option value = '4'>IV <?= $language[$lang]['kvartal_v'] ?>
+					</option>
+				</select>
+			<select name = 'start_year'>
+				<option value = '2012'>2012
+					</option>
+				</select>
+				 <?= $language[$lang]['year_v'] ?>
+			</td>
+			<td align = 'left' rowspan = '2'>
+				<input type = 'submit' value = '<?= $language[$lang]['show'] ?>'>
+			</td>
+		</tr>
+		<tr>
+		<td align = 'right'>
+				<?= $language[$lang]['to'] ?>
+			<select name = 'end_kvartal'>
+				<option value = '1'>I <?= $language[$lang]['kvartal'] ?>
+					</option>
+				<option value = '2'>II <?= $language[$lang]['kvartal'] ?>
+					</option>
+				<option value = '3'>III <?= $language[$lang]['kvartal'] ?>
+					</option>
+				<option value = '4'>IV <?= $language[$lang]['kvartal'] ?>
+					</option>
+				</select>
+			<select name = 'end_year'>
+				<option value = '2012'>2012
+					</option>
+				</select>
+				 <?= $language[$lang]['year_v'] ?>
+			</td>
+		</tr>
+	</table>
+	
+</form>
+<!-- Форма з вибором кварталу -->

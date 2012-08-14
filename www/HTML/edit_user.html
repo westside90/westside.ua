@@ -1,0 +1,37 @@
+<?
+try {
+$STH = $DBH->query("SELECT `group`,`login` FROM `users` WHERE `id` = '".$_GET['id']."'");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+$group[] = $STH->fetch();
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<form action = 'PHP/edit_user.php' method = 'POST'>
+	<input type = 'hidden' name = 'id' value = '<?= $_GET['id']?>'>
+	<table width = "80%" align = 'center'>	
+		<tr>
+			<td colspan = '2' align = 'center'><?= $lang[$_SESSION['lang']]['edit_user'] ?></td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['user'] ?></td>
+			<td><?= $group[0]['login'] ?></td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['group'] ?></td>
+			<td>
+			<select name = 'group'>
+				<option value = '0' <? if ($group[0]['group'] == '0') echo "selected"; ?>><?= $lang[$_SESSION['lang']]['admin'] ?></option>
+				<option value = '1' <? if ($group[0]['group'] == '1') echo "selected"; ?>><?= $lang[$_SESSION['lang']]['editor'] ?></option>
+				<option value = '2' <? if ($group[0]['group'] == '2') echo "selected"; ?>><?= $lang[$_SESSION['lang']]['user'] ?></option>
+				<option value = '3' <? if ($group[0]['group'] == '3') echo "selected"; ?>><?= $lang[$_SESSION['lang']]['banned'] ?></option>
+			</select>		
+			</td>
+		</tr>
+		<tr>
+			<td colspan = '2' align = 'center'><input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['save_changes'] ?>'></td>
+		</tr>
+	</table>
+<form>

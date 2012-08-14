@@ -1,0 +1,66 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `id` FROM `users` WHERE `login` = '".$_POST['login']."'");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($data[] = $STH->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+
+if (!isset($_POST['login'])) $_POST['login'] = null;
+if (!isset($_POST['pass1'])) $_POST['pass1'] = null;
+if (!isset($_POST['pass2'])) $_POST['pass2'] = null;
+if (!isset($_POST['email'])) $_POST['email'] = null;
+
+if ($_POST['login'] != null)
+	{
+	if (count($data) > 1)
+		{ $login = false; }
+	else
+		{ $login = true; }
+	}
+else
+	{ $login = false; }
+	
+if ($_POST['pass1'] != null AND $_POST['pass2'] != null)
+	{
+	if ($_POST['pass1'] != $_POST['pass2'])
+		{ $pass = false; }
+	else
+		{ $pass = true; }
+	}
+else
+	{ $pass = false; }
+?>
+<form action = 'PHP/reg.php' method = 'POST' name = 'form'>
+	<table width = '80%' align= 'center'>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['login'] ?></td>
+			<td><input type = 'text' name = 'login' value = '<?= $_POST['login'] ?>' 
+						onblur ="document.forms.form.action = '#'; document.form.submit();">
+				<? if ($_POST['login'] != null AND !$login) echo $lang[$_SESSION['lang']]['already_exists']; ?>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['password'] ?></td>
+			<td><input type = 'password' name = 'pass1' value = '<?= $_POST['pass1'] ?>'></td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['confirm'] ?></td>
+			<td><input type = 'password' name = 'pass2' value = '<?= $_POST['pass2'] ?>' 
+						onblur ="document.forms.form.action = '#'; document.form.submit();">
+				<? if ($_POST['pass1'] != null AND $_POST['pass2'] != null AND !$pass) echo $lang[$_SESSION['lang']]['pass_dont_match']; ?>
+			</td>
+		</tr>
+		<tr>
+			<td><?= $lang[$_SESSION['lang']]['email'] ?></td>
+			<td><input type = 'text' name = 'email' value = '<?= $_POST['email'] ?>'></td>
+		</tr>
+		<tr>
+			<td colspan = '2' align = 'center'>
+			<input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['register'] ?>' <? if (!$login OR !$pass) echo 'disabled'; ?>>
+			</td>
+		</tr>
+	</table>
+</form>

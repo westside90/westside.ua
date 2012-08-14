@@ -1,0 +1,39 @@
+<?
+if (!isset($_POST['title_en'])) $_POST['title_en'] = null;
+if (!isset($_POST['title_ua'])) $_POST['title_ua'] = null;
+if (!isset($_POST['text_en'])) $_POST['text_en'] = null;
+if (!isset($_POST['text_ua'])) $_POST['text_ua'] = null;
+
+if ($_POST['title_en'] == null OR $_POST['title_ua'] == null OR $_POST['text_en'] == null OR $_POST['text_ua'] == null)
+	{ $form = false; }
+else
+	{ $form = true; }
+?>
+
+<form name = 'form' action = 'PHP/add_article.php' method = 'POST'>
+	<table width = '80%' align= 'center'>
+		<tr>
+			<td colspan = '2' align = 'center'><?= $lang[$_SESSION['lang']]['add_new_article'] ?></td>
+		</tr>
+		<tr>
+			<td><?= $lang['en']['header'] ?></td>
+			<td><input type = 'text' name = 'title_en' value = '<?= $_POST['title_en'] ?>' onblur ="document.forms.form.action = '#'; document.form.submit();"></td>
+		</tr>
+		<tr>
+			<td><?= $lang['ua']['header'] ?></td>
+			<td><input type = 'text' name = 'title_ua' value = '<?= $_POST['title_ua'] ?>' onblur ="document.forms.form.action = '#'; document.form.submit();"></td>
+		</tr>
+		<tr>
+			<td><?= $lang['en']['main_text'] ?></td>
+			<td><textarea name = 'text_en' cols = '45' rows = '10' onblur ="document.forms.form.action = '#'; document.form.submit();"><?= $_POST['text_en'] ?></textarea></td>
+		</tr>
+		<tr>
+			<td><?= $lang['ua']['main_text'] ?></td>
+			<td><textarea name = 'text_ua' cols = '45' rows = '10' onblur ="document.forms.form.action = '#'; document.form.submit();"><?= $_POST['text_ua'] ?></textarea></td>
+		</tr>
+		<tr>
+			<td colspan = '2' align = 'center'>
+				<input type = 'submit' value = '<?= $lang[$_SESSION['lang']]['add'] ?>' <? if (!$form) echo "disabled"; ?>></td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,62 @@
+<form name = 'form'
+	action = 'nomenklatura_add.php'
+	method = 'POST'>
+<table>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<strong>Номенклатура</strong>
+			</td>
+	</tr>
+	<tr>
+		<td>Назва
+			</td>
+		<td>
+			<input type = 'text' name = 'name' value = '<?= $_POST['name'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Повна назва
+			</td>
+		<td>
+			<input type = 'text' name = 'full_name' value = '<?= $_POST['full_name'] ?>'
+			onblur = "document.forms.form.action = '#'; document.form.submit();">
+			</td>
+	</tr>
+	<tr>
+		<td>Вид
+			</td>
+		<td><? type_list($_POST['type']); ?>
+			</td>
+	</tr>
+	<tr>
+		<td>Одиниці виміру
+			</td>
+		<td><? units_list($_POST['units']); ?>
+			<br>
+			<input type = 'button' value = 'Нова одиниця виміру'
+			onclick = 'WinObj = window.open("../nomenklatura/units_form.php", "", "width = 200px, height = 220px, toolbar = 0, status = 0, top = 300px, left = 300px");'>
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>Примітки:<br>
+			<textarea name = 'prymitka' cols = '30' rows = '3'
+			onblur = "document.forms.form.action = '#'; document.form.submit();"><?= $_POST['prymitka'] ?></textarea>
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button' value = 'Додати найменування'
+			onclick = "if (confirm('Ви хочете зберегти <?= $_POST['name'] ?> ?'))
+			{ document.forms.form.action = 'nomenklatura_add.php'; document.form.submit(); opener.location.reload();}">
+			</td>
+	</tr>
+	<tr>
+		<td colspan = '2' align = 'center'>
+			<input type = 'button'
+			value = 'Закрити'
+			onclick = "if (confirm('Закрити не зберігаючи?')) window.close(); opener.location.reload();">
+			</td>
+	</tr>
+</table>
+</form>

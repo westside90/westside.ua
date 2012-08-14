@@ -1,0 +1,46 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `id`,`login`,`visited`,`email`,`group` FROM `users` ORDER BY `login`");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($users[] = $STH->fetch());
+
+$STH2 = $DBH->query("SELECT `name_".$_SESSION['lang']."` FROM `groups` ORDER BY `id`");
+$STH2->setFetchMode(PDO::FETCH_ASSOC);
+while ($groups[] = $STH2->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+
+<table width = '80%' align = 'center' border = '1'>
+	<tr>
+		<td>¹</td>
+		<td><?= $lang[$_SESSION['lang']]['login'] ?></td>
+		<td><?= $lang[$_SESSION['lang']]['group'] ?></td>
+		<td><?= $lang[$_SESSION['lang']]['last_visit'] ?></td>
+		<td><?= $lang[$_SESSION['lang']]['email'] ?></td>
+		<td><?= $lang[$_SESSION['lang']]['edit'] ?></td>
+		<td><?= $lang[$_SESSION['lang']]['delete'] ?></td>
+	</tr>
+
+<?
+for ($i = 0; $i < (count($users)-1); $i++):
+	$users[$i]['group'] = $groups[$users[$i]['group']]['name_'.$_SESSION['lang']];
+?>
+
+<tr>
+	<td><?= $i+1 ?></td>
+	<td><?= $users[$i]['login'] ?></td>
+	<td><?= $users[$i]['group'] ?></td>
+	<td><?= $users[$i]['visited']?></td>
+	<td><?= $users[$i]['email']?></td>
+	<td><a href = "?act=edit_user&id=<?= $users[$i]['id']?>"><?= $lang[$_SESSION['lang']]['edit_user'] ?></a></td>
+	<td><a href = "PHP/del_user.php?id=<?= $users[$i]['id']?>" onclick ="return confirm('<?= $lang[$_SESSION['lang']]['del_user_alert'] ?>')"><?= $lang[$_SESSION['lang']]['delete_user'] ?></a></td>
+</tr>
+
+<?
+endfor;
+?>
+
+</table>

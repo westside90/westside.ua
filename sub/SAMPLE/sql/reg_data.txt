@@ -1,0 +1,44 @@
+CREATE TABLE `westside_db`.`Reg_data` (
+`type` INT NOT NULL ,
+`first_name` TEXT NOT NULL ,
+`second_name` TEXT NOT NULL ,
+`third_name` TEXT NOT NULL ,
+`birth_date` TEXT NOT NULL ,
+`ident_number` TEXT NOT NULL ,
+`email` TEXT NOT NULL ,
+`skype` TEXT NOT NULL ,
+`indeks` TEXT NOT NULL ,
+`oblast` TEXT NOT NULL ,
+`rayon` TEXT NOT NULL ,
+`misto` TEXT NOT NULL ,
+`street` TEXT NOT NULL ,
+`budynok` TEXT NOT NULL ,
+`office` TEXT NOT NULL ,
+`dom_tel` TEXT NOT NULL ,
+`mob_tel` TEXT NOT NULL 
+) ENGINE = InnoDB;
+
+
+
+INSERT INTO `westside_db`.`reg_data` (
+`type` ,
+`first_name` ,
+`second_name` ,
+`third_name` ,
+`birth_date` ,
+`ident_number` ,
+`email` ,
+`skype` ,
+`indeks` ,
+`oblast` ,
+`rayon` ,
+`misto` ,
+`street` ,
+`budynok` ,
+`office` ,
+`dom_tel` ,
+`mob_tel` 
+)
+VALUES (
+'1', 'first', 'second', 'third', 'birth', 'ident', 'email', 'skype', 'ind', 'obl', 'ray', 'misto', 'street', 'bud', 'office', 'dom', 'mob'
+);

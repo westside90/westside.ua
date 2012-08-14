@@ -1,0 +1,56 @@
+<?php
+try {
+$STH = $DBH->query("SELECT `edited`,`id`,`header_en`,`header_ua`,`text_en`,`text_ua`,`author` FROM `data`");
+$STH->setFetchMode(PDO::FETCH_ASSOC);
+while ($data[] = $STH->fetch());
+}
+catch(PDOException $error) {  
+    echo $error->getMessage();
+}
+?>
+	
+<table width = '80%' align= 'center'>
+
+<?	
+for ($i = 0; $i < (count($data)-1); $i++):
+
+	try {
+	$STH2 = $DBH->query("SELECT `login` FROM `users` WHERE `id` = '".$data[$i]['author']."'");
+	$STH2->setFetchMode(PDO::FETCH_ASSOC);
+	$author[] = $STH2->fetch();
+	}
+	catch(PDOException $error) {  
+		echo $error->getMessage();
+	}
+	
+	$data[$i]['header'] = "<a href = 'index.php?act=full&id=".$data[$i]['id']."'>".$data[$i]['header_'.$_SESSION['lang']]."</a>";
+	$data[$i]['author'] = $author[0]['login'];
+	if (strlen ($data[$i]['text_'.$_SESSION['lang']]) > 150 )
+		{
+		$str = mb_substr($data[$i]['text_'.$_SESSION['lang']], 0, 150);
+		$data[$i]['text_'.$_SESSION['lang']] = substr($str, 0, strrpos($str,' '))."...";
+		}
+	unset($author);
+?>
+
+	<tr>
+		<td colspan = '2' align = 'center' style = 'font-size: 20px'><?= $data[$i]['header_'.$_SESSION['lang']] ?>
+		</td>
+	</tr>
+	<tr>
+		<td colspan = '2'><?= $data[$i]['text_'.$_SESSION['lang']] ?>
+		</td>
+	</tr>
+	<br>
+	<tr>
+		<td>
+			<a href = 'index.php?act=full&id=<?= $data[$i]['id'] ?>'><?= $lang[$_SESSION['lang']]['read_more'] ?></a>
+		</td>
+		<td align = 'right'><?= $lang[$_SESSION['lang']]['date'] ?> <?= $data[$i]['edited'] ?>, <?= $lang[$_SESSION['lang']]['author'] ?> <?= $data[$i]['author'] ?>
+		</td>
+	</tr>
+<?
+endfor;
+?>
+		
+</table>
