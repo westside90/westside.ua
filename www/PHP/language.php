@@ -1,7 +1,7 @@
 <?php
 $lang['ua']['main_page'] = "Головна сторінка";
 $lang['ua']['add_new_article'] = "Додати нову статтю";
-$lang['ua']['title'] = "Westside.ua";
+$lang['ua']['title'] = "Buhgalter24.ua";
 $lang['en']['main_page'] = "Main page";
 $lang['en']['add_new_article'] = "Add new article";
 $lang['en']['title'] = "Westside.ua";
